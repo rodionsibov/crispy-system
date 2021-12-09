@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import shop from "@/api/shop";
 
 export default createStore({
   // data
@@ -7,8 +8,8 @@ export default createStore({
   },
   // computed properties
   getters: {
-    productsCount() {
-
+    availableProducts(state) {
+      return state.products.filter(product => product.inventory > 0)
     }
   },
   // are responsible for single state changes
@@ -19,8 +20,17 @@ export default createStore({
   },
   // methods
   actions: {
-    fetchProducts() {
-
+    fetchProducts(context) {
+      shop.getProducts((products) => {
+        context.commit('setProducts', products)
+      });
+    },
+    addToCart(context, product) {
+      if(product.inventory > 0) {
+        context.commit('pushProductToCart', product)
+      } else {
+        // show out of stock message
+      }
     }
   },
   modules: {
