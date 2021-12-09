@@ -21,10 +21,13 @@ export default createStore({
   // methods
   actions: {
     fetchProducts({ commit }) {
-      shop.getProducts((products) => {
-        commit('setProducts', products)
-      });
-    },
+      return new Promise((resolve) => {
+        shop.getProducts((products) => {
+          commit('setProducts', products)
+          resolve()
+        })
+      })
+    }
   },
   modules: {
   }
