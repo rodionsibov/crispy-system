@@ -18,7 +18,10 @@ export default {
           return store.getters.availableProducts
       }
   },
- };
+  created() {
+    store.dispatch('fetchProducts', )
+  },
+};
 </script>
 
 <style>

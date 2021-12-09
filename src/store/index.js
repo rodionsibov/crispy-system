@@ -20,18 +20,11 @@ export default createStore({
   },
   // methods
   actions: {
-    fetchProducts(context) {
+    fetchProducts({ commit }) {
       shop.getProducts((products) => {
-        context.commit('setProducts', products)
+        commit('setProducts', products)
       });
     },
-    addToCart(context, product) {
-      if(product.inventory > 0) {
-        context.commit('pushProductToCart', product)
-      } else {
-        // show out of stock message
-      }
-    }
   },
   modules: {
   }
