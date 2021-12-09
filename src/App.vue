@@ -29,4 +29,12 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+ul {
+  list-style: none;
+}
+
+li {
+  margin: 10px 0;
+}
 </style>
