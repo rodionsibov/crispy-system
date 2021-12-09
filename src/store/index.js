@@ -26,7 +26,10 @@ export default createStore({
     },
     incrementItemQuantity(state, cartItem) {
       cartItem.quantity++
-    }
+    },
+    decrementProductInventory(state, product) {
+      product.inventory--
+    },
   },
   // methods
   actions: {
@@ -41,11 +44,13 @@ export default createStore({
     addProductToCart(context, product) {
       if (product.inventory > 0) {
         const cartItem = context.state.cart.find(item => item.id === product.id)
+
         if (!cartItem) {
           context.commit('pushProductToCart', product)
         } else {
           context.commit('incrementItemQuantity', cartItem)
         }
+        
         context.commit('decrementProductInventory', product)
       }
     }

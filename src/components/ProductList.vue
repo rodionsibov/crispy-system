@@ -23,6 +23,11 @@ export default {
       return this.$store.getters.availableProducts;
     },
   },
+  methods: {
+      addProductToCart(product) {
+          this.$store.dispatch('addProductToCart', product)
+      }
+  },
   created() {
     this.isLoading = true;
     this.$store.dispatch("fetchProducts").then(() => (this.isLoading = false));
