@@ -1,17 +1,19 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
+  <ProductList />
 </template>
 
 <script>
+import ProductList from "./components/ProductList.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
+    ProductList,
   },
   created() {
     console.log(navigator.userAgent);
-  }
-}
+  },
+};
 </script>
 
 <style>

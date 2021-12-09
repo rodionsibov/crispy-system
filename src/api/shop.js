@@ -9,7 +9,6 @@ export default {
     getProducts(cb) {
         setTimeout(() => cb(_products), 100)
     },
-
     buyProducts(products, cb, errorCb) {
         setTimeout(() => {
             // simulate random checkout failure
