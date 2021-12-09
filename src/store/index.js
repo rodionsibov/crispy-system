@@ -21,6 +21,13 @@ export default createStore({
           quantity: cartItem.quantity
         }
       })
+    },
+    cartTotal(state, getters) {
+     let total = 0
+     getters.cartProducts.forEach(product => {
+       total += product.price * product.quantity
+     }) 
+     return total
     }
   },
   // are responsible for single state changes

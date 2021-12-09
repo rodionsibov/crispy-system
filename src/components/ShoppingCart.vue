@@ -11,7 +11,11 @@
 
 <script>
 export default {
-
+computed: {
+    products() {
+        return this.$store.getters.cartProducts
+    }
+}
 }
 </script>
 
