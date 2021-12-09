@@ -23,6 +23,9 @@ export default createStore({
         id: productId,
         quantity: 1
       })
+    },
+    incrementItemQuantity(state, cartItem) {
+      cartItem.quantity++
     }
   },
   // methods
