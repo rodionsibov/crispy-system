@@ -24,7 +24,12 @@ export default createStore({
       })
     },
     cartTotal(state, getters) {
-      return getters.cartProducts.reduce((total, product) => total += product.price * product.quantity, 0)
+      const total = getters.cartProducts.reduce((total, product) => total += product.price * product.quantity, 0)
+      console.log(total);
+      return new Intl.NumberFormat("en-IN", {
+        style: "currency",
+        currency: "USD",
+      }).format(total)
     },
     productIsInStock() {
       return (product) => {
@@ -66,7 +71,7 @@ export default createStore({
         })
       })
     },
-    addProductToCart({state, getters, commit}, product) {
+    addProductToCart({ state, getters, commit }, product) {
       if (getters.productIsInStock(product)) {
         const cartItem = state.cart.find(item => item.id === product.id)
 

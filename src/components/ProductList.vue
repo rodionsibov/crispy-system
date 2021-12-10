@@ -1,17 +1,23 @@
 <template>
   <div>
     <h1>Product List</h1>
-    <img v-if="isLoading" src="https://i.imgur.com/JfPpwOA.gif" alt="">
+    <img v-if="isLoading" src="https://i.imgur.com/JfPpwOA.gif" alt="" />
     <ul v-else>
       <li v-for="product in products" :key="product.id">
         {{ product.title }} - {{ product.price }}
-        <button :disabled="!productIsInStock(product)" @click="addProductToCart(product)">Add to cart</button>
+        <button
+          :disabled="!productIsInStock(product)"
+          @click="addProductToCart(product)"
+        >
+          Add to cart
+        </button>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import { mapState, mapGetters } from "vuex";
 
 export default {
   data() {
@@ -20,17 +26,21 @@ export default {
     };
   },
   computed: {
-    products() {
-      return this.$store.state.products;
-    },
-    productIsInStock() {
-        return this.$store.getters.productIsInStock
-    }
+    ...mapState(["products", "productIsInStock"]),
+    ...mapGetters(['productIsInStock']),
   },
+  //   computed: {
+  //     products() {
+  //       return this.$store.state.products;
+  //     },
+  //     productIsInStock() {
+  //         return this.$store.getters.productIsInStock
+  //     }
+  //   },
   methods: {
-      addProductToCart(product) {
-          this.$store.dispatch('addProductToCart', product)
-      }
+    addProductToCart(product) {
+      this.$store.dispatch("addProductToCart", product);
+    },
   },
   created() {
     this.isLoading = true;
