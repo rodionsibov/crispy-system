@@ -14,9 +14,6 @@ export default {
     ProductList,
     ShoppingCart,
   },
-  created() {
-    console.log(navigator.userAgent);
-  },
 };
 </script>
 
