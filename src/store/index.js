@@ -25,7 +25,6 @@ export default createStore({
     },
     cartTotal(state, getters) {
       const total = getters.cartProducts.reduce((total, product) => total += product.price * product.quantity, 0)
-      console.log(total);
       return new Intl.NumberFormat("en-IN", {
         style: "currency",
         currency: "USD",
