@@ -14,8 +14,7 @@ export default createStore({
     },
     cartProducts(state) {
       return state.cart.map(cartItem => {
-        const product = state.products.find(product => product.id !== cartItem.id)
-        console.log(product);
+        const product = state.products.find(product => product.id === cartItem.id)
         return {
           title: product.title,
           price: product.price,
