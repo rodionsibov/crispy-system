@@ -30,11 +30,11 @@ export default {
     ...mapGetters(["productIsInStock"]),
   },
   methods: {
-    ...mapActions(["fetchProduct", "addProductToCart"]),
+    ...mapActions(["fetchProducts", "addProductToCart"]),
   },
   created() {
     this.isLoading = true;
-    this.fetchProduct();
+    this.fetchProducts();
   },
 };
 </script>
