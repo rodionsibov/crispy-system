@@ -6,7 +6,7 @@
             {{product.title}} - {{product.price}} - {{product.quantity}}
         </li>
     </ul>
-    <p>Total: {{ total }}</p>
+    <p id="total">Total: {{ total }}</p>
 </div>
 </template>
 
@@ -17,12 +17,14 @@ computed: {
         return this.$store.getters.cartProducts
     },
     total() {
-        return this.$store.getters.cartTotal
+        return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(this.$store.getters.cartTotal)
     }
 }
 }
 </script>
 
 <style>
-
+#total {
+    font-weight: bold;
+}
 </style>
