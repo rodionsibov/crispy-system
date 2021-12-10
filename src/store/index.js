@@ -5,7 +5,8 @@ export default createStore({
   // data
   state: {
     products: [],
-    cart: []
+    cart: [],
+    checkoutStatus: null
   },
   // computed properties
   getters: {
@@ -43,6 +44,12 @@ export default createStore({
     decrementProductInventory(state, product) {
       product.inventory--
     },
+    setCheckoutStatus(state, status) {
+      state.checkoutStatus = status
+    },
+    emptyCart(state) {
+      state.cart = []
+    }
   },
   // methods
   actions: {
@@ -57,7 +64,7 @@ export default createStore({
     addProductToCart(context, product) {
       if (product.inventory > 0) {
         const cartItem = context.state.cart.find(item => item.id === product.id)
-        
+
         if (!cartItem) {
           context.commit('pushProductToCart', product.id)
         } else {
@@ -66,6 +73,15 @@ export default createStore({
 
         context.commit('decrementProductInventory', product)
       }
+    },
+    checkout({ state, commit }) {
+      shop.buyProducts(state.cart, () => {
+        commit('emptyCart')
+        commit('setCheckoutStatus', 'success')
+      }, () => {
+        commit('setCheckoutStatus', 'fail')
+
+      })
     }
   },
   modules: {
