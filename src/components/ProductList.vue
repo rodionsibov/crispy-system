@@ -34,7 +34,7 @@ export default {
   },
   created() {
     this.isLoading = true;
-    this.fetchProducts();
+    this.fetchProducts().then(() => (this.isLoading = false));
   },
 };
 </script>
